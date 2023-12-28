@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:14
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      PGUSER: ${PGUSER:-postgres}
+      PGDATABASE: ${PGDATABASE:-postgres}
+      PGPASSWORD: ${PGPASSWORD:-password}
+    restart: always
+
+  app:
+    build: .
+    command: ./entrypoint.sh
+    volumes:
+      - .:/usr/src/app/
+    env_file:
+      - .env
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - "8000:80" # You can map this to a different port on the host if needed
+    restart: always
+
+volumes:
+  db_data:
