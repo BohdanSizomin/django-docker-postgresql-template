@@ -1,16 +1,12 @@
 import logging
 import uuid
 
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    PermissionsMixin,
-)
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from core.managers import UserManager
 from core.mixins import ModifiableMixin
-from django.utils.translation import gettext_lazy as _
-
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +22,14 @@ class User(
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=255, blank=True, null=True)
+
+    is_superuser = models.BooleanField(
+        _("superuser status"),
+        default=False,
+        help_text=_(
+            "Designates that this user has all permissions without explicitly assigning them."
+        ),
+    )
 
     is_staff = models.BooleanField(
         _("staff status"),
