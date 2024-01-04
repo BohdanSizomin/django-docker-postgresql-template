@@ -36,7 +36,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     "users",
-    "users_auth",
+    "auth_token",
 ]
 
 INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS + LOCAL_APPS
