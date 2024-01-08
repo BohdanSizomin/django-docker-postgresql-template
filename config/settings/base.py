@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 THIRD_PARTY_APPS = [
     "rest_framework",
     "debug_toolbar",
+    "drf_yasg",
 ]
 
 DJANGO_APPS = [

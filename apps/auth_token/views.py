@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
-# Create your views here.
+
+class TokenObtainPairView(TokenObtainPairView):
+    pass
+
+
+class TokenRefreshView(TokenRefreshView):
+    pass
+
+
+class TokenVerifyView(TokenVerifyView):
+    pass
